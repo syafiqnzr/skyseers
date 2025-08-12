@@ -1,0 +1,11 @@
+Folder ini untuk menyimpan gambar-gambar website Skyseers.
+
+Sila letakkan gambar-gambar berikut:
+
+1. skyseers_logo.png - Logo utama
+2. moon-observation.jpg - Gambar cerapan bulan
+3. solar-observation.jpg - Gambar cerapan matahari  
+4. astronomy-workshop.jpg - Gambar workshop
+5. cosmic-gold-tshirt.jpg - Gambar produk baju
+
+Website akan tetap berfungsi tanpa gambar, tetapi akan menunjukkan placeholder.

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyseers</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/skyseers_logo.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" class="logo-link">
+                    <img src="images/skyseers_logo.png" alt="Skyseers Logo" class="logo">
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Utama</a></li>
+                <li><a href="#about" class="nav-link">Mengenai Kami</a></li>
+                <li><a href="#activities" class="nav-link">Aktiviti & Program</a></li>
+                <li><a href="#products" class="nav-link">Produk</a></li>
+                <li><a href="#contact" class="nav-link">Hubungi Kami</a></li>
+            </ul>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="themeToggle" title="Light/Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span id="typewriter-text">Selamat Datang ke <span class="highlight">SKYSEERS</span></span>
+            </h1>
+            <p class="hero-subtitle">Organisasi Astronomi & Falak yang Menghubungkan Anda dengan Keajaiban Alam Semesta</p>
+            <p class="hero-description">
+                Journeying Through Universe, Inspiring Generations 🔭
+                <!-- Jelajahi keindahan langit malam, pelajari ilmu falak, dan sertai kami dalam program-program 
+                cerapan bulan dan matahari yang menarik. -->
+            </p>
+            <div class="hero-buttons">
+                <a href="#activities" class="btn btn-primary">Lihat Program Kami</a>
+                <a href="#about" class="btn btn-secondary">Ketahui Lebih Lanjut</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="stars"></div>
+            <div class="moon"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Mengenai Kami</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><br> <br>
+                        Skyseers adalah sebuah organisasi astronomi yang berdedikasi untuk memupuk minat dan 
+                        pengetahuan astronomi di kalangan masyarakat. Dengan tujuan untuk........................................................
+                    </p>
+                    <h3>Visi </h3>
+                    <p>
+                        Menjadi organisasi astronomi terdepan yang menginspirasi masyarakat untuk 
+                        memahami dan menghargai keajaiban alam semesta melalui ilmu falak dan 
+                        program-program cerapan yang berkualiti.
+                    </p>
+                    
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Menyediakan program cerapan bulan dan matahari yang berkesan</li>
+                        <li>Mendidik masyarakat tentang ilmu falak dan astronomi</li>
+                        <li>Memupuk minat terhadap sains astronomi dalam kalangan generasi muda</li>
+                    </ul>
+                </div>
+                <div class="about-logo">
+                    <img src="images/skyseers_logo.png" alt="Skyseers Logo" class="about-logo-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities" class="activities">
+        <div class="container">
+            <h2 class="section-title">Aktiviti & Program</h2>
+            <p class="section-subtitle">Sertai program-program menarik kami untuk meneroka keajaiban langit</p>
+            
+            <!-- Activities Gallery Grid -->
+            <div class="activities-gallery">
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 1" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-2.PNG" alt="Aktiviti SKYSEERS 2" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 3" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 4" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 5" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 6" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 7" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 8" class="gallery-img">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/aktiviti/aktiviti-1.PNG" alt="Aktiviti SKYSEERS 9" class="gallery-img">
+                </div>
+            </div>
+
+            <!-- View Details Button -->
+            <div class="activities-action">
+                <a href="aktiviti.html" class="view-details-btn">
+                    <i class="fas fa-eye"></i> Lebih Lanjut
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <h2 class="section-title">Produk</h2>
+            <p class="section-subtitle">Koleksi eksklusif untuk peminat astronomi</p>
+            
+            <div class="products-grid">
+                <div class="product-card featured">
+                   <!--  <div class="product-badge">Terbaru</div> -->
+                    <div class="product-image">
+                        <img src="images/cosmic-gold-tshirt.png" alt="Cosmic Gold Edition T-Shirt" class="product-img">
+                    </div>
+                    <div class="product-content">
+                        <h3>Cosmic Gold Edition</h3>
+                        <p>
+                            Skyseers Enterprise kini membawakan kepada anda jualan baju
+                            edisi pertama kami! Jom ajak kawan-kawan, saudara-mara untuk
+                            PRE-ORDER beramai-ramai! Maka anda akan menjadi orang pertama
+                            yang merasmikan keluaran baju dari syarikat kami!
+                        </p>
+                        <div class="product-price">RM35.00 - RM45.00</div>
+                            <button class="btn btn-primary product-btn" 
+        onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLSco_kXVibcR8PWP42I8YF92rXAO8X9zf5t6_yYYeED5ZS2cpw/viewform', '_blank')">
+   Beli Sekarang
+</button>
+</div>
+                    </div>
+                </div>
+
+            
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <p class="section-subtitle">Hubungi kami untuk sebarang pertanyaan atau maklumat lanjut</p>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Maklumat Hubungan</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Nombor Telefon</h4>
+                            <p>+60 11-234 5678 (nama)</p>
+                            <p>+60 19-876 5432 (nama)</p>
+                            <p>+60 10-101 0101 (nama)</p>
+                        </div>
+                    </div>
+
+                    <div class="social-media-row">
+                        <div class="contact-item">
+                            <i class="fab fa-instagram"></i>
+                            <div>
+                                <h4>Instagram</h4>
+                                <a href="https://instagram.com/skyseers_official" target="_blank">@skyseers</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fab fa-facebook"></i>
+                            <div>
+                                <h4>Facebook</h4>
+                                <a href="https://facebook.com/sky.seers" target="_blank">Skyseers</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activity Modal -->
+    <div class="activity-modal" id="activityModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="modal-images">
+                <div class="modal-image-slider" id="imageSlider">
+                    <!-- Images will be loaded dynamically -->
+                </div>
+                <button class="slider-nav slider-prev" id="prevBtn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="slider-nav slider-next" id="nextBtn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="slider-dots" id="sliderDots">
+                    <!-- Dots will be generated dynamically -->
+                </div>
+            </div>
+
+            <div class="modal-info">
+                <h2 class="modal-title" id="modalTitle">Program Title</h2>
+                <p class="modal-description" id="modalDescription">Program description</p>
+
+                <div class="modal-details" id="modalDetails">
+                    <!-- Details will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/skyseers_logo.png" alt="Skyseers Logo" class="footer-logo-img">
+                </div>
+                <div class="footer-text">
+                    <p>&copy; 2025 Skyseers. Hak Cipta Terpelihara.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="https://instagram.com/skyseers_official" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/sky.seers" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button 
+    <button onclick="topFunction()" class="btn btn-danger btn-icon landing-back-top" id="back-to-top" style="display: block;">
+        <i class="ri-arrow-up-line"></i>
+    </button> -->
+
+    <script src="script.js"></script>
+</body>
+</html>
