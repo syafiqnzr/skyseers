@@ -1,7 +1,7 @@
 pipeline {
   agent none
   environment {
-    APP = "ProjectJenkins"
+    APP = "Skyseers"
     DOCKER_REPO = "syafiqnzr/${APP}"
   }
   stages {
