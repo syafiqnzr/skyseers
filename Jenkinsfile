@@ -1,56 +1,37 @@
 pipeline {
-  agent none
-  environment {
-    APP = "Skyseers"
-    DOCKER_REPO = "syafiqnzr/${APP}"
-  }
-  stages {
-    stage('Checkout') {
-      agent { label 'dev' }
-      steps {
-        checkout scm
-      }
-    }
+    agent any
 
-    stage('Build & Push Image') {
-      agent { label 'dev' }
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
-          sh "docker build -t ${DOCKER_REPO}:${BUILD_NUMBER} ."
-          sh "docker push ${DOCKER_REPO}:${BUILD_NUMBER}"
-        }
-      }
-    }
-
-    stage('Deploy to Production') {
-      agent { label 'prod' }
-      steps {
-        withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-          sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
-        }
-        sh """
-          docker pull ${DOCKER_REPO}:${BUILD_NUMBER}
-          docker stop ${APP} || true
-          docker rm ${APP} || true
-          docker run -d --name ${APP} -p 80:80 --restart unless-stopped ${DOCKER_REPO}:${BUILD_NUMBER}
-        """
-      }
-    }
-  }
-        stage('Push to Docker Hub') {
+    stages {
+        stage('Checkout Code') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
-                    sh 'docker tag mywebsite:latest mydockerhubuser/mywebsite:latest'
-                    sh 'docker push mydockerhubuser/mywebsite:latest'
+                git branch: 'main', url: 'https://github.com/syafiqnzr/skyseers.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("syafiqnzr/skyseers:latest")
                 }
             }
         }
 
-  post {
-    always {
-      echo "Build finished: ${currentBuild.currentResult}"
+        stage('Push to Docker Hub') {
+            steps {
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
+        stage('Deploy Container') {
+            steps {
+                script {
+                    sh 'docker run -d -p 8081:80 syafiqnzr/skyseers:latest'
+                }
+            }
+        }
     }
-  }
 }
