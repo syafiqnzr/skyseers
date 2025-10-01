@@ -38,6 +38,16 @@ pipeline {
       }
     }
   }
+        stage('Push to Docker Hub') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh "echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin"
+                    sh 'docker tag mywebsite:latest mydockerhubuser/mywebsite:latest'
+                    sh 'docker push mydockerhubuser/mywebsite:latest'
+                }
+            }
+        }
+
   post {
     always {
       echo "Build finished: ${currentBuild.currentResult}"
