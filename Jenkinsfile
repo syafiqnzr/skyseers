@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'main', url: 'https://github.com/syafiqnzr/skyseers.git'
+                git branch: 'master',
+                    url: 'https://github.com/syafiqnzr/skyseers.git',
+                    credentialsId: 'github-credentials'
             }
         }
 
@@ -28,9 +30,7 @@ pipeline {
 
         stage('Deploy Container') {
             steps {
-                script {
-                    sh 'docker run -d -p 8081:80 syafiqnzr/skyseers:latest'
-                }
+                sh 'docker run -d -p 8081:80 syafiqnzr/skyseers:latest'
             }
         }
     }
