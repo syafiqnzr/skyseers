@@ -1,19 +1,33 @@
 pipeline {
     agent any
 
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials') // ID dari Jenkins credentials
+        DOCKERHUB_REPO = "syafiqnzr/skyseers" // ganti dengan Docker Hub repo kau
+        APP_NAME = "skyseers-app"
+    }
+
     stages {
-        stage('Checkout Code') {
+        stage('Checkout from GitHub') {
             steps {
                 git branch: 'master',
                     url: 'https://github.com/syafiqnzr/skyseers.git',
-                    credentialsId: 'github-credentials'
+                    credentialsId: 'github-credentials'  // ID GitHub credential
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 script {
-                    dockerImage = docker.build("syafiqnzr/skyseers:latest")
+                    sh "docker build -t ${DOCKERHUB_REPO}:latest ."
+                }
+            }
+        }
+
+        stage('Login to Docker Hub') {
+            steps {
+                script {
+                    sh "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
                 }
             }
         }
@@ -21,16 +35,19 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-                        dockerImage.push()
-                    }
+                    sh "docker push ${DOCKERHUB_REPO}:latest"
                 }
             }
         }
 
         stage('Deploy Container') {
             steps {
-                sh 'docker run -d -p 8081:80 syafiqnzr/skyseers:latest'
+                script {
+                    // Stop container lama kalau ada
+                    sh "docker rm -f ${APP_NAME} || true"
+                    // Run container baru
+                    sh "docker run -d --name ${APP_NAME} -p 8080:80 ${DOCKERHUB_REPO}:latest"
+                }
             }
         }
     }
