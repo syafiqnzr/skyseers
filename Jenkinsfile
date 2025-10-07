@@ -17,13 +17,10 @@ pipeline {
             }
         }
 
-        stage('Deploy Container') {
+        stage('Deploy') {
             steps {
-                echo 'Restarting container...'
-                sh '''
-                docker rm -f skyseers-container || true
-                docker run -d --name skyseers-container -p 80:80 skyseers:latest
-                '''
+                echo 'Deploying to /home/ubuntu/skyseers...'
+                sh 'cp -r * /home/ubuntu/skyseers/'
             }
         }
     }
