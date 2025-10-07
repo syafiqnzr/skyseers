@@ -6,7 +6,7 @@ pipeline {
             steps {
                 // Untuk repo private, gunakan credentialsId yang dah ditambah di Jenkins
                 git branch: 'master', 
-                    credentialsId: 'github-html-token', // Ganti dengan ID credential awak
+                    credentialsId: 'syafiq-token', // Ganti dengan ID credential awak
                     url: 'https://github.com/syafiqnzr/skyseers.git'
             }
         }
