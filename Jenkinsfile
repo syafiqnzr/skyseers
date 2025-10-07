@@ -17,15 +17,15 @@ pipeline {
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Deploy Container') {
             steps {
-                echo 'Running Docker container...'
+                echo 'Restarting container...'
                 sh '''
-                docker stop skyseers || true
-                docker rm skyseers || true
-                docker run -d --name skyseers -p 80:80 skyseers:latest
+                docker rm -f skyseers-container || true
+                docker run -d --name skyseers-container -p 80:80 skyseers:latest
                 '''
             }
         }
     }
 }
+
