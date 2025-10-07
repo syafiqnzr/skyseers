@@ -4,30 +4,27 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Untuk repo private, gunakan credentialsId yang dah ditambah di Jenkins
-                git branch: 'master', 
-                    credentialsId: 'syafiq-token', // Ganti dengan ID credential awak
-                    url: 'https://github.com/syafiqnzr/skyseers.git'
+                git branch: 'master',
+                    url: 'https://github.com/syafiqnzr/skyseers.git',
+                    credentialsId: 'syafiq-token'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    docker.build("skyseers:latest")
-                }
+                echo 'Building Docker image...'
+                sh 'docker build -t skyseers:latest .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                script {
-                    // Stop & remove container lama jika ada
-                    sh '''
-                    docker rm -f skyseers-container || true
-                    docker run -d --name skyseers-container -p 8081:80 skyseers:latest
-                    '''
-                }
+                echo 'Running Docker container...'
+                sh '''
+                docker stop skyseers || true
+                docker rm skyseers || true
+                docker run -d --name skyseers -p 80:80 skyseers:latest
+                '''
             }
         }
     }
