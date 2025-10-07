@@ -1,11 +1,16 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/syafiqnzr/skyseers.git'
+                // Untuk repo private, gunakan credentialsId yang dah ditambah di Jenkins
+                git branch: 'master', 
+                    credentialsId: 'github-html-token', // Ganti dengan ID credential awak
+                    url: 'https://github.com/syafiqnzr/skyseers.git'
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -13,10 +18,15 @@ pipeline {
                 }
             }
         }
-        stage('Run Container') {
+
+        stage('Run Docker Container') {
             steps {
                 script {
-                    docker.run("skyseers:latest", "-p 8081:80")
+                    // Stop & remove container lama jika ada
+                    sh '''
+                    docker rm -f skyseers-container || true
+                    docker run -d --name skyseers-container -p 8081:80 skyseers:latest
+                    '''
                 }
             }
         }
