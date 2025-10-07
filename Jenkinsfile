@@ -12,12 +12,11 @@ pipeline {
 
         stage('Deploy to Web Folder') {
             steps {
-                echo "Copying files to /home/ubuntu/skyseers..."
-                sh '''
-                sudo rm -rf /home/ubuntu/skyseers/*
-                sudo cp -r * /home/ubuntu/skyseers/
-                sudo chown -R www-data:www-data /home/ubuntu/skyseers/
-                '''
+            echo "Copying files to /home/ubuntu/skyseers..."
+            sh '''
+            rm -rf /home/ubuntu/skyseers/*
+            cp -r * /home/ubuntu/skyseers/
+             '''
             }
         }
     }
