@@ -18,5 +18,12 @@ pipeline {
                 sh 'echo "Running tests..."'
             }
         }
+        stage('Deploy') {
+            steps {
+                // copy repo content ke web server folder
+                sh 'cp -r * /var/www/html/'
+                sh 'dpt deploy.."'
+            }
+        }
     }
 }
