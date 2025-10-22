@@ -22,7 +22,7 @@ pipeline {
             steps {
                 // copy repo content ke web server folder
                 sh 'cp -r * /var/www/html/'
-                sh 'dpt deploy.."'
+                sh 'whoami'
             }
         }
     }
