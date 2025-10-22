@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
+                git branch: 'master',
                     url: 'https://github.com/syafiqnzr/skyseers.git',
                     credentialsId: '0b3977aa-1c48-445a-9139-18542de66c32'
             }
