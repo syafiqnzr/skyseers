@@ -1,32 +1,20 @@
 pipeline {
-    agent any
-
+    agent { label 'TestServer-agent' }  // pilih node yang dah kau setup
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'master',
-                    url: 'https://github.com/syafiqnzr/skyseers.git',
-                    credentialsId: 'syafiq-token'
+                git branch: 'main', url: 'https://github.com/syafiqnzr/skyseers.git'
             }
         }
-
-        stage('Deploy to Web Folder') {
+        stage('Build') {
             steps {
-            echo "Copying files to /home/ubuntu/skyseers..."
-            sh '''
-            rm -rf /home/ubuntu/skyseers/*
-            cp -r * /home/ubuntu/skyseers/
-             '''
+                sh 'echo "Build running on $(hostname)"'
             }
         }
-    }
-
-    post {
-        success {
-            echo "✅ Deployment successful!"
-        }
-        failure {
-            echo "❌ Deployment failed."
+        stage('Test') {
+            steps {
+                sh 'echo "Running tests..."'
+            }
         }
     }
 }
