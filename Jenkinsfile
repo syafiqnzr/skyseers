@@ -1,9 +1,11 @@
 pipeline {
-    agent { label 'TestServer-agent' }  // pilih node yang dah kau setup
+    agent { label 'TestServer-agent' }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/syafiqnzr/skyseers.git'
+                git branch: 'main',
+                    url: 'https://github.com/syafiqnzr/skyseers.git',
+                    credentialsId: '0b3977aa-1c48-445a-9139-18542de66c32'
             }
         }
         stage('Build') {
