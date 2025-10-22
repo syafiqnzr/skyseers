@@ -21,8 +21,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 // copy repo content ke web server folder
-                sh 'cp -r * /var/www/html/'
                 sh 'whoami'
+                sh 'id'
+                sh 'ls -ld /var/www/html'
             }
         }
     }
