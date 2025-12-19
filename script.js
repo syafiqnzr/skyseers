@@ -565,6 +565,64 @@ class ActivityModalManager {
     }
 }
 
+// Promotional Pop-up Manager
+class PromoPopupManager {
+    constructor() {
+        this.popup = document.getElementById('promoPopup');
+        this.closeBtn = document.getElementById('promoClose');
+        this.init();
+    }
+
+    init() {
+        if (!this.popup) return;
+
+        // Show popup after page load
+        setTimeout(() => {
+            this.showPopup();
+        }, 1500);
+
+        // Close button event
+        if (this.closeBtn) {
+            this.closeBtn.addEventListener('click', () => {
+                this.closePopup();
+            });
+        }
+
+        // Close on background click
+        this.popup.addEventListener('click', (e) => {
+            if (e.target === this.popup) {
+                this.closePopup();
+            }
+        });
+
+        // Close on ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && this.popup.classList.contains('show')) {
+                this.closePopup();
+            }
+        });
+    }
+
+    showPopup() {
+        this.popup.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    closePopup() {
+        this.popup.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
+// Global function for button onclick
+function closePromoPopup() {
+    const popup = document.getElementById('promoPopup');
+    if (popup) {
+        popup.classList.remove('show');
+        document.body.style.overflow = '';
+    }
+}
+
 // Initialize all components when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ThemeManager();
@@ -576,6 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
     new NavbarScroll();
     new BackToTopManager();
     new ActivityModalManager();
+    new PromoPopupManager();
     new TypewriterEffect();
 
     // Add loading animation to hero section
@@ -652,62 +711,6 @@ class BackToTopManager {
     }
 }
 
-// Typewriter Effect
-class TypewriterEffect {
-    constructor() {
-        this.textElement = document.getElementById('typewriter-text');
-        this.phrases = ["Selamat Datang ke SKYSEERS", "Journeying Through Universe", "Inspiring Generations"];
-        this.phraseIndex = 0;
-        this.charIndex = 0;
-        this.typingSpeed = 100;
-        this.pauseBetweenPhrases = 2000;
-        this.init();
-    }
-
-    init() {
-        if (!this.textElement) {
-            console.error('Typewriter element not found');
-            return;
-        }
-
-        console.log('TypewriterEffect initialized');
-
-        // Clear existing content
-        this.textElement.innerHTML = '';
-
-        // Start typewriter effect after page load
-        setTimeout(() => {
-            this.typeWriter();
-        }, 1000);
-    }
-
-    typeWriter() {
-        if (this.charIndex < this.phrases[this.phraseIndex].length) {
-            const currentChar = this.phrases[this.phraseIndex].charAt(this.charIndex);
-            const currentText = this.textElement.textContent + currentChar;
-
-            // Handle SKYSEERS highlighting
-            if (currentText.includes('SKYSEERS')) {
-                const beforeSky = currentText.substring(0, currentText.indexOf('SKYSEERS'));
-                const skyPart = currentText.substring(currentText.indexOf('SKYSEERS'));
-                this.textElement.innerHTML = beforeSky + '<span class="highlight">' + skyPart + '</span>';
-            } else {
-                this.textElement.textContent = currentText;
-            }
-
-            this.charIndex++;
-            setTimeout(() => this.typeWriter(), this.typingSpeed);
-        } else {
-            // Phrase finished, prepare for next or loop
-            setTimeout(() => {
-                this.charIndex = 0;
-                this.textElement.textContent = ''; // Clear for next phrase
-                this.phraseIndex = (this.phraseIndex + 1) % this.phrases.length; // Cycle through phrases
-                this.typeWriter(); // Start typing the next phrase
-            }, this.pauseBetweenPhrases);
-        }
-    }
-}
 
 // Test function for modal
 function testModal() {
